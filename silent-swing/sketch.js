@@ -82,8 +82,8 @@ function draw() {
     } else {
         osc.stop();
         background(bg2);
-        text("oh i hope no one starts pushing me around", width / 14, height / 2, 350, 200);
-        text("i am small and i am stuck in a phone", width / 14, height / 6, 350, 200);
+        text("oh i hope no one starts pushing me around", width / 14, height / 2, 600, 600);
+        text("i am small and i am stuck in a phone", width / 14, height / 6, 600, 600);
     }
   
 }

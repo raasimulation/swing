@@ -69,8 +69,8 @@ function draw() {
     }
   } else {
     background(bg);
-    text("oh i hope someone starts swinging me around", width / 14, height / 2, 350, 200);
-    text("i am small and i want someone to swing me..!", width / 14, height / 6, 350, 200);
+    text("oh i hope someone starts swinging me around", width / 14, height / 2, 600, 600);
+    text("i am small and i want someone to swing me..!", width / 14, height / 6, 600, 600);
     if (laughSynth.amp() === 0) {
       playLaughSequence();
       if (!cryingSound.isPlaying()) {
