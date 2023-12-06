@@ -28,7 +28,6 @@ function setup() {
   } else {
     textSize(48);
     text("non ios device", 100, 100);
-    permissionGranted = true;
   }
 }
 
@@ -66,7 +65,7 @@ function draw() {
               cryingSound.stop();
     }
     if (laughSynth.amp() > 0) {
-      laughSynth.amp(0.5, 0.5);
+      laughSynth.amp(0, 0.5);
     }
   } else {
     background(bg);
@@ -75,7 +74,8 @@ function draw() {
     if (laughSynth.amp() === 0) {
       playLaughSequence();
       if (!cryingSound.isPlaying()) {
-            cryingSound.amp(0.5);
+            cryingSound.amp(0);
+            cryingSound.stop();
     }
   }
 }
@@ -85,9 +85,7 @@ function deviceMoved() {
   // now increase the value
   value1 = constrain(value1 + 40, 0, 200);
   playLaughSequence();
-  if (!laughSynth.isPlaying()) {
-    background(bg2);
-  } 
+  background(bg2);
 }
 
 function playLaughSequence() {
