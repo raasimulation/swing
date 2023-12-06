@@ -85,7 +85,9 @@ function deviceMoved() {
   // now increase the value
   value1 = constrain(value1 + 40, 0, 200);
   playLaughSequence();
-  background(bg2);
+  if (!laughSynth.isPlaying()) {
+    background(bg2);
+  } 
 }
 
 function playLaughSequence() {
