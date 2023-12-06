@@ -53,7 +53,7 @@ function draw() {
 
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(36);
+  textSize(64);
 
   // value limit
   value1 = constrain(value1 - 4, 0, 200);

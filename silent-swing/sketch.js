@@ -1,4 +1,5 @@
 let permissionGranted = false;
+let permissionButton;
 let osc;
 let monoSynth;
 var value1 = 0;
@@ -13,26 +14,14 @@ function setup() {
   userStartAudio();
   
   //device-motion, device-orientation
-if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-  // ios 13 device 
-  
-  DeviceOrientationEvent.requestPermission()
-  .catch(() => {
-    //show dialog
-    let button = createButton('click me to let me show u stuff')
-    button.style("font-size", "24px");
-    button.center();
-    button.mousePressed ( requestAccess );
-    throw error;
-  })
-  .then(() => {
-    // after any visit 
-    permissionGranted = true;
-  })
-} else {
-  // non ios 13 device
-  textSize(48);
-  permissionGranted = true;
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    permissionButton = createButton('hello');
+    permissionButton.style("font-size", "24px");
+    permissionButton.center();
+    permissionButton.mousePressed(requestAccess);
+  } else {
+    textSize(48);
+    text("non ios device", 100, 100);
   }
   
   monoSynth = new p5.MonoSynth();
@@ -44,16 +33,15 @@ if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEv
 
 function requestAccess() {
   DeviceOrientationEvent.requestPermission()
-  .then(response => {
-    if (response == 'granted') {
-      permissionGranted = true;
-    } else {
-      permissionGranted = false;
-    }
-  })
-  .catch(console.error);
-  
-  this.remove();
+    .then(response => {
+      if (response == 'granted') {
+        permissionGranted = true;
+        permissionButton.remove();
+      } else {
+        permissionGranted = false;
+      }
+    })
+    .catch(console.error);
 }
 
 function playSynth() {
@@ -81,7 +69,7 @@ function draw() {
     background(bg);
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(36);
+    textSize(64);
  
     // value limit
     value1 = constrain(value1 - 4, 0, 200)
