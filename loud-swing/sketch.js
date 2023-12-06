@@ -28,6 +28,7 @@ function setup() {
   } else {
     textSize(48);
     text("non ios device", 100, 100);
+    permissionGranted = true;
   }
 }
 
@@ -49,7 +50,7 @@ function draw() {
   
   let combinedFrequency = 500 + sin(frameCount * 0.4) * 50 + noise(frameCount * 0.2) * 100;
   cryingSound.freq(combinedFrequency);
-  laughSynth.amp(0);
+  laughSynth.amp(0.5);
 
   fill(255);
   textAlign(CENTER, CENTER);
