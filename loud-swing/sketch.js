@@ -16,8 +16,10 @@ function setup() {
   cryingSound = new p5.Oscillator('sine');
   cryingSound.amp(1);
   cryingSound.start();
-  
+
   laughSynth = new p5.Oscillator('square');
+  laughSynth.amp(0.8); // Set initial amplitude here
+  laughSynth.start();
 
   // device-motion, device-orientation
   if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -75,9 +77,9 @@ function draw() {
     if (laughSynth.amp() === 0) {
       playLaughSequence();
       if (!cryingSound.isPlaying()) {
-            cryingSound.amp(0);
-            cryingSound.stop();
-    }
+        cryingSound.amp(0);
+        cryingSound.stop();
+      }
   }
 }
 }
@@ -88,6 +90,7 @@ function deviceMoved() {
   playLaughSequence();
   if (!laughSynth.isPlaying()) {
     background(bg2);
+    playLaughSequence();
   } 
 }
 
